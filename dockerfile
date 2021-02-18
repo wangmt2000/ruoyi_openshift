@@ -3,7 +3,7 @@ FROM maven:3.6.3-jdk-8 AS build
 #copy .m2 /root/.m2/
 #WORKDIR /usr/src/app
 copy .  /usr/src/app/
-run ls /root/.m2/
+#run ls /root/.m2/
 run ls /usr/src/app/
 #RUN --mount=type=cache,target=/home/opc/.m2 mvn -f pom.xml mvn clean install
 
