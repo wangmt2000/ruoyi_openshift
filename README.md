@@ -2,7 +2,8 @@
 
 
 MYSQL_URL=jdbc:mysql://mysql:3306/ry?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
-oc adm policy add-scc-to-user anyuid -z default
+
+####oc adm policy add-scc-to-user anyuid -z default
 设置默认root身份运行容器
 
 
