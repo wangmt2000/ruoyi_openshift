@@ -8,7 +8,7 @@ copy .  /usr/src/app/
 #RUN --mount=type=cache,target=/home/opc/.m2 mvn -f pom.xml mvn clean install
 
 RUN mvn -f /usr/src/app/pom.xml clean install
-FROM openjdk:8-slim
+FROM maven:3.6.3-jdk-8
 #COPY --from=build /usr/src/app/target/*.jar app.jar  
 COPY --from=build /usr/src/app/. /app/
 #COPY --from=build /usr/src/app/ruoyi-admin/target/* /app/ruoyi-admin/target/
