@@ -23,6 +23,7 @@ COPY --from=build /usr/src/app/* /app/
 #COPY --from=build /usr/src/app/ruoyi-framework/target/*.jar ruoyi-framework.jar
 #COPY --from=build /usr/src/app/ruoyi-generator/target/*.jar ruoyi-generator.jar
 #COPY --from=build /usr/src/app/ruoyi-quartz/target/*.jar ruoyi-quartz.jar
+run ls /app/
 WORKDIR /app
 
 ENTRYPOINT ["java", "-XshowSettings:128m", "-XX:NativeMemoryTracking=off", "-jar", "/app/ruoyi-admin/target/ruoyi-admin.jar"]
