@@ -10,7 +10,7 @@ copy .  /usr/src/app/
 RUN mvn -f /usr/src/app/pom.xml clean install
 FROM openjdk:8-slim
 #COPY --from=build /usr/src/app/target/*.jar app.jar  
-COPY --from=build /usr/src/app/* /app/
+COPY --from=build /usr/src/app/. /app/
 #COPY --from=build /usr/src/app/ruoyi-admin/target/* /app/ruoyi-admin/target/
 #COPY --from=build /usr/src/app/ruoyi-common/target/* /app/ruoyi-common/target/
 #COPY --from=build /usr/src/app/ruoyi-framework/target/* /app/ruoyi-framework/target/
