@@ -8,6 +8,8 @@ MYSQL_URL=jdbc:mysql://mysql:3306/ry?useUnicode=true&characterEncoding=utf8&zero
 ####oc adm policy add-scc-to-user anyuid -z default
 设置默认root身份运行容器
 
+CREATE DATABASE IF NOT EXISTS ry default charset utf8 COLLATE utf8_general_ci;
+
 
 
 
