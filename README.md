@@ -3,6 +3,8 @@
 
 MYSQL_URL=jdbc:mysql://mysql:3306/ry?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
 
+创建pvc，挂载/home/ruoyi/下，估计是没有root身份，无法创建对应文件夹
+
 ####oc adm policy add-scc-to-user anyuid -z default
 设置默认root身份运行容器
 
