@@ -10,6 +10,8 @@ MYSQL_URL=jdbc:mysql://mysql:3306/ry?useUnicode=true&characterEncoding=utf8&zero
 
 CREATE DATABASE IF NOT EXISTS ry default charset utf8 COLLATE utf8_general_ci;
 
+数据库密码：P@ssw0rd
+
 
 
 
