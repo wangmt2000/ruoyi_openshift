@@ -14,7 +14,7 @@ COPY .  /usr/src/app/
 #run ls /usr/src/app/
 #RUN --mount=type=cache,target=/home/opc/.m2 mvn -f pom.xml mvn clean install
 
-RUN mvn -f /usr/src/app/pom.xml clean install"
+RUN mvn -f /usr/src/app/pom.xml clean install
 
 FROM maven:3.6.3-jdk-8
 
