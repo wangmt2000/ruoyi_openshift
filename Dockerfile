@@ -33,7 +33,7 @@ RUN chown -R ruoyi:ruoyi /app/
 #COPY --from=build /usr/src/app/ruoyi-framework/target/*.jar ruoyi-framework.jar
 #COPY --from=build /usr/src/app/ruoyi-generator/target/*.jar ruoyi-generator.jar
 #COPY --from=build /usr/src/app/ruoyi-quartz/target/*.jar ruoyi-quartz.jar
-run su - ruoyi -c "ls /app/"
+RUN su - ruoyi -c "ls /app/"
 #WORKDIR /app
 
 ENTRYPOINT [su - ruoyi -c "java", "-XshowSettings:128m", "-XX:NativeMemoryTracking=off", "-jar", "/app/ruoyi-admin/target/ruoyi-admin.jar"]
