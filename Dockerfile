@@ -1,5 +1,11 @@
 FROM maven:3.6.3-jdk-8 AS build
 
+
+RUN useradd ruoyi
+RUN su - ruoyi -c "mkdir /usr/src/app/"
+
+
+
 #copy .m2 /root/.m2/
 #WORKDIR /usr/src/app
 copy .  /usr/src/app/
@@ -7,8 +13,10 @@ copy .  /usr/src/app/
 #run ls /usr/src/app/
 #RUN --mount=type=cache,target=/home/opc/.m2 mvn -f pom.xml mvn clean install
 
-RUN mvn -f /usr/src/app/pom.xml clean install
+RUN  su - ruoyi -c "mvn -f /usr/src/app/pom.xml clean install"
 FROM maven:3.6.3-jdk-8
+RUN useradd ruoyi
+RUN su - ruoyi -c "mkdir /app/"
 #COPY --from=build /usr/src/app/target/*.jar app.jar  
 COPY --from=build /usr/src/app/. /app/
 #COPY --from=build /usr/src/app/ruoyi-admin/target/* /app/ruoyi-admin/target/
@@ -23,9 +31,9 @@ COPY --from=build /usr/src/app/. /app/
 #COPY --from=build /usr/src/app/ruoyi-framework/target/*.jar ruoyi-framework.jar
 #COPY --from=build /usr/src/app/ruoyi-generator/target/*.jar ruoyi-generator.jar
 #COPY --from=build /usr/src/app/ruoyi-quartz/target/*.jar ruoyi-quartz.jar
-run ls /app/
+run su - ruoyi -c "ls /app/"
 #WORKDIR /app
 
-ENTRYPOINT ["java", "-XshowSettings:128m", "-XX:NativeMemoryTracking=off", "-jar", "/app/ruoyi-admin/target/ruoyi-admin.jar"]
+ENTRYPOINT [su - ruoyi -c "java", "-XshowSettings:128m", "-XX:NativeMemoryTracking=off", "-jar", "/app/ruoyi-admin/target/ruoyi-admin.jar"]
 #ENTRYPOINT ["java", "-XshowSettings:vm", "-XX:NativeMemoryTracking=summary", "-jar", "app.jar"]
 EXPOSE 80
