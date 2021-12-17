@@ -1,8 +1,9 @@
 FROM maven:3.6.3-jdk-8 AS build
 
 
-RUN useradd ruoyi
-RUN su - ruoyi -c "mkdir /usr/src/app/"
+RUN useradd -d /home/ruoyi ruoyi
+RUN mkdir /usr/src/app/
+RUN chmod -R 644 /usr/src/app/
 
 
 
