@@ -46,6 +46,6 @@ RUN su - ruoyi -c "ls /app/"
 
 #WORKDIR /app
 
-ENTRYPOINT [su - ruoyi -c "java", "-XshowSettings:128m", "-XX:NativeMemoryTracking=off", "-jar", "/app/ruoyi-admin/target/ruoyi-admin.jar"]
+ENTRYPOINT ["su - ruoyi -c" "java", "-XshowSettings:128m", "-XX:NativeMemoryTracking=off", "-jar", "/app/ruoyi-admin/target/ruoyi-admin.jar"]
 #ENTRYPOINT ["java", "-XshowSettings:vm", "-XX:NativeMemoryTracking=summary", "-jar", "app.jar"]
 EXPOSE 80
