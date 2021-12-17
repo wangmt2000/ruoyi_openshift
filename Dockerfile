@@ -15,9 +15,11 @@ copy .  /usr/src/app/
 #RUN --mount=type=cache,target=/home/opc/.m2 mvn -f pom.xml mvn clean install
 
 RUN  mvn -f /usr/src/app/pom.xml clean install"
+
 FROM maven:3.6.3-jdk-8
+
 RUN useradd -d /home/ruoyi ruoyi
-RUN  mkdir /app/
+RUN mkdir /app/
 #COPY --from=build /usr/src/app/target/*.jar app.jar  
 COPY --from=build /usr/src/app/. /app/
 RUN chown -R ruoyi:ruoyi /app/
