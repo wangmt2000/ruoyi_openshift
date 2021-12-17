@@ -14,12 +14,13 @@ copy .  /usr/src/app/
 #run ls /usr/src/app/
 #RUN --mount=type=cache,target=/home/opc/.m2 mvn -f pom.xml mvn clean install
 
-RUN  su - ruoyi -c "mvn -f /usr/src/app/pom.xml clean install"
+RUN  mvn -f /usr/src/app/pom.xml clean install"
 FROM maven:3.6.3-jdk-8
-RUN useradd ruoyi
-RUN su - ruoyi -c "mkdir /app/"
+RUN useradd -d /home/ruoyi ruoyi
+RUN  mkdir /app/
 #COPY --from=build /usr/src/app/target/*.jar app.jar  
 COPY --from=build /usr/src/app/. /app/
+RUN chown -R ruoyi:ruoyi /app/
 #COPY --from=build /usr/src/app/ruoyi-admin/target/* /app/ruoyi-admin/target/
 #COPY --from=build /usr/src/app/ruoyi-common/target/* /app/ruoyi-common/target/
 #COPY --from=build /usr/src/app/ruoyi-framework/target/* /app/ruoyi-framework/target/
