@@ -17,17 +17,17 @@ COPY .  /usr/src/app/
 RUN mvn -f /usr/src/app/pom.xml clean install
 
 FROM maven:3.6.3-jdk-8
-
+RUN mkdir /app/
+COPY --from=build /usr/src/app/. /app/
 RUN useradd -d /home/ruoyi ruoyi
+RUN chown -R ruoyi:ruoyi /app/
 USER ruoyi
 RUN ls /home/ruoyi
 #RUN chown -R ruoyi:ruoyi /home/ruoyi/
-
-RUN mkdir /app/
 RUN mkdir /home/ruoyi/logs
 
 #COPY --from=build /usr/src/app/target/*.jar app.jar  
-COPY --from=build /usr/src/app/. /app/
+
 
 #RUN chown -R ruoyi:ruoyi /app/
 
