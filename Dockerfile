@@ -19,15 +19,16 @@ RUN mvn -f /usr/src/app/pom.xml clean install
 FROM maven:3.6.3-jdk-8
 
 RUN useradd -d /home/ruoyi ruoyi
-RUN mkdir /home/ruoyi
-RUN chown -R ruoyi:ruoyi /home/ruoyi/
+USER ruoyi
+RUN ls /home/ruoyi
+#RUN chown -R ruoyi:ruoyi /home/ruoyi/
 
 RUN mkdir /app/
 
 #COPY --from=build /usr/src/app/target/*.jar app.jar  
 COPY --from=build /usr/src/app/. /app/
 
-RUN chown -R ruoyi:ruoyi /app/
+#RUN chown -R ruoyi:ruoyi /app/
 
 #COPY --from=build /usr/src/app/ruoyi-admin/target/* /app/ruoyi-admin/target/
 #COPY --from=build /usr/src/app/ruoyi-common/target/* /app/ruoyi-common/target/
@@ -41,7 +42,8 @@ RUN chown -R ruoyi:ruoyi /app/
 #COPY --from=build /usr/src/app/ruoyi-framework/target/*.jar ruoyi-framework.jar
 #COPY --from=build /usr/src/app/ruoyi-generator/target/*.jar ruoyi-generator.jar
 #COPY --from=build /usr/src/app/ruoyi-quartz/target/*.jar ruoyi-quartz.jar
-USER ruoyi
+
+#RUN mkdir /home/ruoyi
 RUN  ls /app/
 
 #WORKDIR /app
