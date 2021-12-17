@@ -24,6 +24,7 @@ RUN ls /home/ruoyi
 #RUN chown -R ruoyi:ruoyi /home/ruoyi/
 
 RUN mkdir /app/
+RUN mkdir /home/ruoyi/logs
 
 #COPY --from=build /usr/src/app/target/*.jar app.jar  
 COPY --from=build /usr/src/app/. /app/
