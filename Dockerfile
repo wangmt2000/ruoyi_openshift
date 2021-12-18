@@ -19,6 +19,9 @@ RUN mvn -f /usr/src/app/pom.xml clean install
 FROM maven:3.6.3-jdk-8
 RUN mkdir /app/
 COPY --from=build /usr/src/app/. /app/
+RUN mkdir -p /home/ruoyi
+RUN chmod -R 777 /home/ruoyi
+
 RUN useradd -d /home/ruoyi ruoyi
 RUN chown -R ruoyi:ruoyi /app/
 USER ruoyi
